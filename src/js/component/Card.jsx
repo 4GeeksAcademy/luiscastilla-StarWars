@@ -9,7 +9,7 @@ const Card = ({ item, tipo }) => {  // Renombrar 'character' a 'item' y agregar 
 
     return (
         <div className="card">
-            <img src="https://via.placeholder.com/400x200" className="card-img-top" alt="Item Image" />
+            <img src={`https://starwars-visualguide.com/assets/img/${tipo === "people"? "characters": tipo}/${item.uid}.jpg`} className="card-img-top" alt="Item Image" />
             <div className="card-body">
                 <h5 className="card-title">{item.name}</h5>
                 <p className="card-text">

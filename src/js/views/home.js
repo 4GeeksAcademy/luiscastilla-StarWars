@@ -15,9 +15,9 @@ export const Home = () => {
         <div className="container">
             <h2 className="text-danger">Personajes</h2>
             <div className="row">
-                {store.personajes.map((character, index) => (
+                {store.personajes.map((personaje, index) => (
                     <div className="col-4" key={index}>
-                        <Card item={character} tipo="people" />
+                        <Card item={personaje} tipo="people" />
                     </div>
                 ))}
             </div>
