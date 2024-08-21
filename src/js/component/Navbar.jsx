@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-export const Navbar = () => {
+const Navbar = () => {
     const { store, actions } = useContext(Context);
 
     return (
-        <nav className="navbar navbar-light bg-light mb-3">
+        <nav className="navbar bg-light">
             <Link to="/">
                 <img src="https://i.pinimg.com/736x/1e/72/5d/1e725dcdef32a797b5f208b631aaad68.jpg" className="imagen ms-5" alt="Star Wars Logo" />
             </Link>
@@ -16,12 +16,13 @@ export const Navbar = () => {
                         className="btn btn-primary dropdown-toggle" 
                         type="button" 
                         id="dropdownMenuButton" 
-                        data-toggle="dropdown" 
+                        data-bs-toggle="dropdown"
                         aria-haspopup="true" 
-                        aria-expanded="false">
+                        aria-expanded="false"
+                        >
                         Favorites <span className="badge badge-light">{store.favorites.length}</span>
                     </button>
-                    <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                    <div className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                         {store.favorites.length > 0 ? (
                             store.favorites.map((fav, index) => (
                                 <div 
@@ -34,8 +35,11 @@ export const Navbar = () => {
                                     </Link>
                                     <button 
                                         className="btn btn-danger btn-sm" 
-                                        onClick={() => actions.removeFavorite(fav.uid)}>
-                                        <i className="fas fa-trash-alt"></i> {/* Icono de Basura */}
+                                        onClick={(event) => {
+                                            event.stopPropagation();
+                                            actions.quitarFavorito(fav.uid);
+                                        }}>
+                                        <i className="fas fa-trash-alt"></i>
                                     </button>
                                 </div>
                             ))
@@ -48,3 +52,5 @@ export const Navbar = () => {
         </nav>
     );
 };
+
+export default Navbar;

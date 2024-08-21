@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-const Card = ({ item, tipo }) => {  // Renombrar 'character' a 'item' y agregar 'tipo'
+const Card = ({ item, tipo }) => {
     const { store, actions } = useContext(Context);
 
-    const isFavorite = store.favorites.some(fav => fav.uid === item.uid);
+    const esFavorito = store.favorites.some(fav => fav.uid === item.uid);
 
     return (
         <div className="card">
@@ -13,7 +13,6 @@ const Card = ({ item, tipo }) => {  // Renombrar 'character' a 'item' y agregar 
             <div className="card-body">
                 <h5 className="card-title">{item.name}</h5>
                 <p className="card-text">
-                    {/* Personalizar los detalles dependiendo del tipo */}
                     {tipo === "people" && (
                         <>
                             Gender: {item.gender}<br />
@@ -37,9 +36,12 @@ const Card = ({ item, tipo }) => {  // Renombrar 'character' a 'item' y agregar 
                 <div className="d-flex justify-content-between">
                     <Link to={`/details/${tipo}/${item.uid}`} className="btn btn-primary">Learn more!</Link>
                     <button 
-                        onClick={() => isFavorite ? actions.removeFavorite(item.uid) : actions.addFavorite(item)}
+                        onClick={(event) => {
+                            event.stopPropagation();
+                            esFavorito ? actions.quitarFavorito(item.uid) : actions.añadirFavorito(item, tipo);
+                        }}
                         className="btn btn-outline-warning">
-                        <i className={isFavorite ? "fas fa-heart" : "far fa-heart"}></i>
+                        <i className={esFavorito ? "fas fa-heart" : "far fa-heart"}></i>
                     </button>
                 </div>
             </div>

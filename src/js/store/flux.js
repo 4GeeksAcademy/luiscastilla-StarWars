@@ -34,7 +34,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.error("Error al cargar los vehículos:", error);
                 }
             },
-            getItemDetails: async (id, tipo) => {
+            traerDetallesItem: async (id, tipo) => {
                 try {
                     const res = await fetch(`https://www.swapi.tech/api/${tipo}/${id}`);
                     const data = await res.json();
@@ -43,19 +43,17 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.error("Error al cargar los detalles:", error);
                 }
             },
-            // Agregar a favoritos
-            addFavorite: (item, tipo) => {
+            añadirFavorito: (item, tipo) => {
                 const store = getStore();
-                const newItem = { ...item, tipo }; // Agrega 'tipo' al item
+                const newItem = { ...item, tipo: tipo };
                 if (!store.favorites.some(fav => fav.uid === item.uid)) {
                     setStore({ favorites: [...store.favorites, newItem] });
                 }
             },
-            // Eliminar de favoritos
-            removeFavorite: (uid) => {
+            quitarFavorito: (uid) => {
                 const store = getStore();
-                const updatedFavorites = store.favorites.filter(fav => fav.uid !== uid);
-                setStore({ favorites: updatedFavorites });
+                const ActualizarFavoritos = store.favorites.filter(fav => fav.uid !== uid);
+                setStore({ favorites: ActualizarFavoritos });
             }
         }
     };

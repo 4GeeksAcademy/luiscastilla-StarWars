@@ -20,6 +20,8 @@ const injectContext = PassedComponent => {
 
 		useEffect(() => {
 			state.actions.cargarDatosPersonajes();
+			state.actions.cargarDatosPlanetas();
+        	state.actions.cargarDatosVehiculos();
 		}, []);
 
 		return (

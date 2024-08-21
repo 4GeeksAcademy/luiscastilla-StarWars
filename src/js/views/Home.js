@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import Card from "../component/Card.jsx";
-import { Context } from "../store/appContext";
+import { Context } from "../store/appContext.js";
 
-export const Home = () => {
+const Home = () => {
     const { store, actions } = useContext(Context);
 
     useEffect(() => {
@@ -40,3 +40,5 @@ export const Home = () => {
         </div>
     );
 };
+
+export default Home;
