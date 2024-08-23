@@ -13,26 +13,26 @@ const Home = () => {
 
     return (
         <div className="container">
-            <h2 className="text-danger">Personajes</h2>
-            <div className="row">
+            <h2 className="text-white">Personajes</h2>
+            <div className="d-flex overflow-auto">
                 {store.personajes.map((personaje, index) => (
-                    <div className="col-4" key={index}>
+                    <div className="col-4 me-3 mb-3" key={index}>
                         <Card item={personaje} tipo="people" />
                     </div>
                 ))}
             </div>
-            <h2 className="text-danger">Planetas</h2>
-            <div className="row">
+            <h2 className="text-white">Planetas</h2>
+            <div className="d-flex overflow-auto">
                 {store.planetas.map((planeta, index) => (
-                    <div className="col-4" key={index}>
+                    <div className="col-4 me-3 mb-3" key={index}>
                         <Card item={planeta} tipo="planets" />
                     </div>
                 ))}
             </div>
-            <h2 className="text-danger">Vehículos</h2>
-            <div className="row">
+            <h2 className="text-white">Vehículos</h2>
+            <div className="d-flex overflow-auto">
                 {store.vehiculos.map((vehiculo, index) => (
-                    <div className="col-4" key={index}>
+                    <div className="col-4 me-3 mb-3" key={index}>
                         <Card item={vehiculo} tipo="vehicles" />
                     </div>
                 ))}

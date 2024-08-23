@@ -5,11 +5,17 @@ import { Context } from "../store/appContext";
 const Card = ({ item, tipo }) => {
     const { store, actions } = useContext(Context);
 
-    const esFavorito = store.favorites.some(fav => fav.uid === item.uid);
+    const esFavorito = store.favorites.some(fav => fav.uid === item.uid && fav.tipo === tipo);
+    const imagenAlternativa = "https://img.freepik.com/vector-gratis/pagina-error-404-distorsion_23-2148105404.jpg";
 
     return (
         <div className="card">
-            <img src={`https://starwars-visualguide.com/assets/img/${tipo === "people"? "characters": tipo}/${item.uid}.jpg`} className="card-img-top" alt="Item Image" />
+            <img 
+                src={`https://starwars-visualguide.com/assets/img/${tipo === "people" ? "characters" : tipo}/${item.uid}.jpg`}
+                className="card-img-top"
+                alt="Item Image"
+                onError={(e) => e.target.src = imagenAlternativa}
+            />
             <div className="card-body">
                 <h5 className="card-title">{item.name}</h5>
                 <p className="card-text">
@@ -35,12 +41,13 @@ const Card = ({ item, tipo }) => {
                 </p>
                 <div className="d-flex justify-content-between">
                     <Link to={`/details/${tipo}/${item.uid}`} className="btn btn-primary">Learn more!</Link>
-                    <button 
+                    <button
+                        className="btn btn-outline-warning"
                         onClick={(event) => {
                             event.stopPropagation();
-                            esFavorito ? actions.quitarFavorito(item.uid) : actions.añadirFavorito(item, tipo);
+                            esFavorito ? actions.quitarFavorito(item.uid, tipo) : actions.añadirFavorito(item, tipo);
                         }}
-                        className="btn btn-outline-warning">
+                    >
                         <i className={esFavorito ? "fas fa-heart" : "far fa-heart"}></i>
                     </button>
                 </div>

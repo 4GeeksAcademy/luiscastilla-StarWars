@@ -2,3 +2,21 @@
     width: 100px;
 }
 
+body {
+    padding-top: 70px;
+    background-image: url(https://img.freepik.com/foto-gratis/cielo-estrellas_417767-519.jpg?t=st=1724421196~exp=1724424796~hmac=9928d7e7612ab95b7fef6f08ebc180ada837b5e5c1171fa5cfe5167fc6e1a0e1&w=740);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.text-white{
+    font-weight: bold;
+}
+
+.detalles{
+    color: white;
+}
+
+.medidas{
+    width: 500px;
+}
