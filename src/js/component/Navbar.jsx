@@ -37,7 +37,7 @@ const Navbar = () => {
                                         className="btn btn-danger btn-sm"
                                         onClick={(event) => {
                                             event.stopPropagation();
-                                            actions.quitarFavorito(fav.uid, fav.tipo); // Pasa también el tipo
+                                            actions.quitarFavorito(fav.uid, fav.tipo); 
                                         }}>
                                         <i className="fas fa-trash-alt"></i>
                                     </button>

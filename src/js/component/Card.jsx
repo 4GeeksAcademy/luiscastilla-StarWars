@@ -9,37 +9,23 @@ const Card = ({ item, tipo }) => {
     const imagenAlternativa = "https://img.freepik.com/vector-gratis/pagina-error-404-distorsion_23-2148105404.jpg";
 
     return (
-        <div className="card">
-            <img 
-                src={`https://starwars-visualguide.com/assets/img/${tipo === "people" ? "characters" : tipo}/${item.uid}.jpg`}
-                className="card-img-top"
-                alt="Item Image"
-                onError={(e) => e.target.src = imagenAlternativa}
-            />
-            <div className="card-body">
-                <h5 className="card-title">{item.name}</h5>
-                <p className="card-text">
-                    {tipo === "people" && (
-                        <>
-                            Gender: {item.gender}<br />
-                            Hair Color: {item.hair_color}<br />
-                            Eye Color: {item.eye_color}
-                        </>
-                    )}
-                    {tipo === "planets" && (
-                        <>
-                            Population: {item.population}<br />
-                            Terrain: {item.terrain}
-                        </>
-                    )}
-                    {tipo === "vehicles" && (
-                        <>
-                            Model: {item.model}<br />
-                            Manufacturer: {item.manufacturer}
-                        </>
-                    )}
-                </p>
-                <div className="d-flex justify-content-between">
+        <div className="card h-100">
+            <div className="container-img">
+                <img
+                    src={`https://starwars-visualguide.com/assets/img/${tipo === "people" ? "characters" : tipo}/${item.uid}.jpg`}
+                    className="card-img-top"
+                    alt="Item Image"
+                    onError={(e) => e.target.src = imagenAlternativa}
+                />
+            </div>
+            <div className="card-body d-flex flex-column justify-content-between">
+                <div>
+                    <h5 className="card-title">{item.name}</h5>
+                    <p className="card-text">
+                        {`Si quieres obtener más información acerca de ${item.name}, dale en el botón "Learn more!"`}
+                    </p>
+                </div>
+                <div className="d-flex justify-content-between mt-auto">
                     <Link to={`/details/${tipo}/${item.uid}`} className="btn btn-primary">Learn more!</Link>
                     <button
                         className="btn btn-outline-warning"
